@@ -12,7 +12,7 @@ Created Time: Fri 08 Jan 2021 09:03:13 AM DST
 
 using namespace std;
 
-void dipole(int t, int n, double a, string type, double length, double width) // 原胞原子数、扩胞倍数、晶格常数
+void dipole(int t, int n, double a, string type="rect", double length=1, double width=1) // 原胞原子数、扩胞倍数、晶格常数
 {
     vector<double> x, y, z, m; // 创建存放 x y z m 的迭代器
     vector<double> sum;        // 创建存放累加结果的迭代器

@@ -12,7 +12,7 @@ root -l -q 'dipole.C(par1, par2, par3, par4, par5, par6)'
 - `par1` 表示原胞中原子数（number of atoms in a unit cell）
 - `par2` 表示扩胞倍数（）
 - `par3` 表示晶格常数（lattice constant）
-- `par4` 表示原胞类型（长方、六方）
+- `par4` 表示原胞类型（rect、hexa）
 - `par5` 表示长方的长度
 - `par6` 表示长方的宽度
 
