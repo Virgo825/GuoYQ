@@ -7,7 +7,7 @@
 
 运行时两个数据文件与程序放在同一目录下，在终端输入：
 ```bash
-root -l 'dipole.C(par1, par2, par3)'
+root -l -q 'dipole.C(par1, par2, par3)'
 ```
 - `par1` 表示原胞中原子数（number of atoms in a unit cell）
 - `par2` 表示扩胞倍数（）
