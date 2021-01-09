@@ -55,7 +55,9 @@ sh dipole.sh par1 par2 par3 par4 par5
     - 运行结束会生成名为 `sum` 的文件
 - 核对 sum.f90 中数组长度以及循环次数是否与`sum`文件行数一致，修改`dimension(xx)` 括号内的值与` do i=1,xx` 的值
     ![](./Figure/fig7.png)
+
     ![](./Figure/fig8.png)
+    
     ![](./Figure/fig9.png)
 - 利用 `ifort` 编译 `sum.f90` 并运行，打开终端输入：
     ```bash
