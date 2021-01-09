@@ -1,38 +1,38 @@
 # 偶极相互作用计算
 
 ## 使用ROOT程序计算
-所需文件如下：
-- `dipole.C`，计算程序
-- `xyz.txt`，笛卡尔坐标系，三列数
-- `m.txt`，从 `OUTCAR` 中得到相应原子的总磁矩
+进入 `ROOT` 文件夹中，文件如下：
+![](./Figure/fig1.png)
+- `dipole.sh` 运行脚本
+- `dipole.C` 计算程序
+- `xxx` 数据文件夹，包含两个文件：
+    - `xyz.txt` 笛卡尔坐标系，三列数
+    - `m.txt` 从 `OUTCAR` 中得到相应原子的总磁矩
 
-运行时两个数据文件与程序放在同一目录下，在终端输入：
+运行时运行脚本（`dipole.sh`）、计算程序（`dipole.C`）与数据文件夹（`xxx`）放在同一目录下，在终端输入：
 ```bash
-root -l -q 'dipole.C(par1, par2, par3, par4, par5, par6)'
+sh dipole.sh par1 par2 par3 par4 par5 
 ```
-- `par1` 表示原胞中原子数（number of atoms in a unit cell）
-- `par2` 表示扩胞倍数
-- `par3` 表示晶格常数（lattice constant）
-- `par4` 表示原胞类型（"rect"、"hexa"）
-- `par5` 表示长方的长度
-- `par6` 表示长方的宽度
-
-若原胞类型为 `hexa` ，则后面三个参数不写
-```bash
-root -l -q 'dipole.C(par1, par2, par3)'
-```
-程序运行结束会生成两个txt文件：
+- `par1` 表示 数据文件（`xyz.txt` `m.txt`）存放文件夹名称 `xxx`
+- `par2` 表示原胞中原子数（number of atoms in a unit cell）
+- `par3` 表示扩胞倍数
+- `par4` 表示晶格常数（lattice constant）
+- `par5` 表示原胞类型（`rect`、`hexa`），若为 `rect`，则会提示输入长和宽
+![](./Figure/fig2.png)
+程序运行结束会在数据文件夹 `xxx` 中生成两个txt文件：
 - `sum.txt` ，两两偶极相互作用结果
-- `result.txt` ，两列数据，分别为级数和（积分）、级数和除以4![](http://latex.codecogs.com/gif.latex?\\pi)。
+- `result.txt` ，两列数据，分别为级数和（积分）、级数和除以4$\pi$。
+![](./Figure/fig3.png)
+
 
 ## 使用ifort编译计算
 在 `ifort` 文件夹中文件如下：
-- `prog.f90` ，计算单个原胞的偶极相互作用
-- `sum.f90` ，对单个原胞结果积分并除以4![](http://latex.codecogs.com/gif.latex?\\pi)
-- `x5` ，笛卡尔坐标系x
-- `y5` ，笛卡尔坐标系y
-- `z5` ，笛卡尔坐标系z
-- `m5` ，原子总磁矩m
+- `prog.f90` 计算单个原胞的偶极相互作用
+- `sum.f90` 对单个原胞结果积分并除以4$\pi$
+- `x5` 笛卡尔坐标系x
+- `y5` 笛卡尔坐标系y
+- `z5` 笛卡尔坐标系z
+- `m5` 原子总磁矩m
 
 运行说明：
 - 核对 `prog.f90` 开头数组长度是否与数据文件行数（原子数）一致，修改 `dimension(xx)` 括号内的值 
