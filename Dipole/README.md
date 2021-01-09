@@ -31,7 +31,7 @@ sh dipole.sh par1 par2 par3 par4 par5
 
 
 ## 使用ifort编译计算
-在 `ifort` 文件夹中文件如下：
+进入 `ifort` 文件夹中，文件如下：
 
 ![](./Figure/fig4.png)
 
