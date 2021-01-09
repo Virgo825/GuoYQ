@@ -2,7 +2,9 @@
 
 ## 使用ROOT程序计算
 进入 `ROOT` 文件夹中，文件如下：
+
 ![](./Figure/fig1.png)
+
 - `dipole.sh` 运行脚本
 - `dipole.C` 计算程序
 - `xxx` 数据文件夹，包含两个文件：
@@ -18,10 +20,13 @@ sh dipole.sh par1 par2 par3 par4 par5
 - `par3` 表示扩胞倍数
 - `par4` 表示晶格常数（lattice constant）
 - `par5` 表示原胞类型（`rect`、`hexa`），若为 `rect`，则会提示输入长和宽
+
 ![](./Figure/fig2.png)
+
 程序运行结束会在数据文件夹 `xxx` 中生成两个txt文件：
 - `sum.txt` ，两两偶极相互作用结果
 - `result.txt` ，两列数据，分别为级数和（积分）、级数和除以4$\pi$。
+
 ![](./Figure/fig3.png)
 
 
