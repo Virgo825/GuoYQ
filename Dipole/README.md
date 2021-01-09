@@ -32,6 +32,9 @@ sh dipole.sh par1 par2 par3 par4 par5
 
 ## 使用ifort编译计算
 在 `ifort` 文件夹中文件如下：
+
+![](./Figure/fig4.png)
+
 - `prog.f90` 计算单个原胞的偶极相互作用
 - `sum.f90` 对单个原胞结果积分并除以4$\pi$
 - `x5` 笛卡尔坐标系x
@@ -41,6 +44,7 @@ sh dipole.sh par1 par2 par3 par4 par5
 
 运行说明：
 - 核对 `prog.f90` 开头数组长度是否与数据文件行数（原子数）一致，修改 `dimension(xx)` 括号内的值 
+    ![](./Figure/fig5.png)
 - 利用 `ifort` 编译 `prog.f90` 并运行，打开终端输入：
     ```bash
     ifort prog.f90 -o prog
@@ -50,6 +54,9 @@ sh dipole.sh par1 par2 par3 par4 par5
     - 运行过程中会提示输入原胞中原子数（t），随后又会提示输入晶格常数（a）与扩胞倍数（n）
     - 运行结束会生成名为 `sum` 的文件
 - 核对 sum.f90 中数组长度以及循环次数是否与`sum`文件行数一致，修改`dimension(xx)` 括号内的值与` do i=1,xx` 的值
+    ![](./Figure/fig7.png)
+    ![](./Figure/fig8.png)
+    ![](./Figure/fig9.png)
 - 利用 `ifort` 编译 `sum.f90` 并运行，打开终端输入：
     ```bash
     ifort sum.f90 -o sum1
@@ -57,3 +64,5 @@ sh dipole.sh par1 par2 par3 par4 par5
     ```
     - `-o` 后的 `sum1` 指生成可执行文件的名称，可自定义
     - 运行结束会生成名为 `conv` 的文件，两列
+
+![](./Figure/fig6.png)
