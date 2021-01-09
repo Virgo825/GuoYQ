@@ -23,4 +23,32 @@ root -l -q 'dipole.C(par1, par2, par3)'
 ```
 程序运行结束会生成两个txt文件：
 - `sum.txt` ，两两偶极相互作用结果
-- `result.txt` ，两列数据，分别为级数和（积分）、级数和除以4$\pi$。
+- `result.txt` ，两列数据，分别为级数和（积分）、级数和除以4![](http://latex.codecogs.com/gif.latex?\\pi)。
+
+## 使用ifort编译计算
+在 `ifort` 文件夹中文件如下：
+- `prog.f90` ，计算单个原胞的偶极相互作用
+- `sum.f90` ，对单个原胞结果积分并除以4![](http://latex.codecogs.com/gif.latex?\\pi)
+- `x5` ，笛卡尔坐标系x
+- `y5` ，笛卡尔坐标系y
+- `z5` ，笛卡尔坐标系z
+- `m5` ，原子总磁矩m
+
+运行说明：
+- 核对 `prog.f90` 开头数组长度是否与数据文件行数（原子数）一致，修改 `dimension(xx)` 括号内的值 
+- 利用 `ifort` 编译 `prog.f90` 并运行，打开终端输入：
+    ```bash
+    ifort prog.f90 -o prog
+    ./prog
+    ```
+    - `-o` 后的 `prog` 指生成可执行文件的名称，可自定义
+    - 运行过程中会提示输入原胞中原子数（t），随后又会提示输入晶格常数（a）与扩胞倍数（n）
+    - 运行结束会生成名为 `sum` 的文件
+- 核对 sum.f90 中数组长度以及循环次数是否与`sum`文件行数一致，修改`dimension(xx)` 括号内的值与` do i=1,xx` 的值
+- 利用 `ifort` 编译 `sum.f90` 并运行，打开终端输入：
+    ```bash
+    ifort sum.f90 -o sum1
+    ./sum1
+    ```
+    - `-o` 后的 `sum1` 指生成可执行文件的名称，可自定义
+    - 运行结束会生成名为 `conv` 的文件，两列
