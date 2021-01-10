@@ -2,16 +2,16 @@
 
 ## 计算公式
 - **一个原胞**，$i$ 与 $j$ 均从 $1$ 循环到 $t$（原胞原子数），$i$ 与 $j$ 相同时不计算，最后对所有 $r_{i,j}$ 累加得到相互作用。
-$$r_{i,j} = m_{i} \times m_{j} \times \frac{2 \times (z_{i} - z_{j})^2 - (x_{i} - x_{j})^2 - (y_{i} - y_{j})^2}{((z_{i} - z_{j})^2 + (x_{i} - x_{j})^2 + (y_{i} - y_{j})^2)^{\frac{5}{2}}} $$
+$$r_{i,j} = m_{i} \times m_{j} \times \frac{2 \times (z_{i} - z_{j})^2 - (x_{i} - x_{j})^2 - (y_{i} - y_{j})^2}{[(z_{i} - z_{j})^2 + (x_{i} - x_{j})^2 + (y_{i} - y_{j})^2]^{\frac{5}{2}}} $$
 $$\sum_{i=1,j=1}^{i=t,j=t}r_{i,j} (i \neq j)$$
 
 - **多个原胞**，两层循环，$l$ 从 $0$ 循环到 $n$（扩胞倍数）, $k$ 从 $0$ 循环到 $l$，扩胞倍数 $l$ 先循环，循环过程中对 $k$ 再循环，总共循环 $\sum_{i=1}^{n+1}$ 次，也就是 `sum.txt` 中的行数。
 每次循环中计算相互作用，$i$ 与 $j$ 均从 $1$ 循环到 $t$（原胞原子数），对所有的 $r_{i,j}$ 乘 $4$ 或 $8$ 后，累加得到相互作用。
     - **长方**
-$$r_{i,j} = m_{i} \times m_{j} \times \frac{2 \times(z_{i} - z_{j})^2 - (x_{i} - x_{j} + l \times a)^2 - (y_{i} - y_{j} + k \times \frac{width}{length} \times a)^2}{((z_{i} - z_{j})^2 + (x_{i} - x_{j} + l \times a)^2 + (y_{i} - y_{j} + \frac{width}{length} \times k \times a)^2)^{\frac{5}{2}}}$$
+$$r_{i,j} = m_{i} \times m_{j} \times \frac{2 \times(z_{i} - z_{j})^2 - (x_{i} - x_{j} + l \times a)^2 - (y_{i} - y_{j} + k \times \frac{width}{length} \times a)^2}{[(z_{i} - z_{j})^2 + (x_{i} - x_{j} + l \times a)^2 + (y_{i} - y_{j} + \frac{width}{length} \times k \times a)^2]^{\frac{5}{2}}}$$
 
     - **六方**
-$$r_{i,j}=m_{i} \times m_{j} \times \frac{2 \times (z_{i} - z_{j})^2 - (x_{i} - x_{j} + l \times a - \frac{1}{2} \times k \times a)^2 - (y_{i} - y_{j} + k \times \frac{\sqrt{3}}{2} \times a)^2}{((z_{i} - z_{j})^2 + (x_{i} - x_{j} + l \times a - \frac{1}{2}\times k \times a)^2 + (y_{i} - y_{j} + \frac{\sqrt{3}}{2} \times k \times a)^2)^{\frac{5}{2}}}$$
+$$r_{i,j}=m_{i} \times m_{j} \times \frac{2 \times (z_{i} - z_{j})^2 - (x_{i} - x_{j} + l \times a - \frac{1}{2} \times k \times a)^2 - (y_{i} - y_{j} + k \times \frac{\sqrt{3}}{2} \times a)^2}{[(z_{i} - z_{j})^2 + (x_{i} - x_{j} + l \times a - \frac{1}{2}\times k \times a)^2 + (y_{i} - y_{j} + \frac{\sqrt{3}}{2} \times k \times a)^2]^{\frac{5}{2}}}$$
 
 
 ## 使用ROOT程序计算
