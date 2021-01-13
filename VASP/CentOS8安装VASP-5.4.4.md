@@ -23,7 +23,7 @@
     which icc icpc ifort  mpiifort
     ```
     
-- `FFTW` 编译，进入 `/opt/intel/oneapi/mkl/2021.1.1/interfaces/fftw3xf` ，运行 `make libintel64` 命令，运行结束会在当前目录下会产生 `libfftw3xf_intel.a` 库文件。
+- `FFTW` 编译，进入 `/opt/intel/oneapi/mkl/2021.1.1/interfaces/fftw3xf` ，运行 `make libintel64` 命令，运行结束会在当前目录下会产生一个 `libfftw3xf_intel.a` 库文件。
 
 ## openmpi 安装
 - [openmpi官网](https://www.open-mpi.org/)，本次安装使用的是 `1.8.1` 版本 ([下载地址](https://www.open-mpi.org/software/ompi/v1.8/))，也可下载最新版。
@@ -31,7 +31,7 @@
     ```bash
     tar -xf openmpi-1.8.tar.gz
     cd openmpi-1.8.1
-    ./configure --prefix=/opt/openmpi-1.8.1 CC=icc CXX=icpc F77=ifort FC=ifort
+    ./configure --prefix=/opt/mpi/openmpi-1.8.1 CC=icc CXX=icpc F77=ifort FC=ifort
     make -j8
     make install
     ```
@@ -66,13 +66,13 @@
 - 检查文件，并添加环境变量。编译完成后，在 `/opt/vasp/vasp.5.4.4/bin` 目录下出现了 `vasp_gam`、`vasp_ncl`、`vasp_std` 三个可执行文件，分别是 `Gamma only版`，`非共线版` 和 `标准版`。为了使用方便，在 `bin` 文件夹中创建 `vasp_std` 软链接为 `vasp`，```ln -s vasp_std vasp```。然后在`~/.bashrc`加入以下内容后，执行 `source ~/.bashrc` 或重新进入终端，`VASP` 就可以用了。
     ```bash
     # VASP
-    export PATH=/opt/vasp.5.4.4/bin:$PATH
+    export PATH=/opt/vasp/vasp.5.4.4/bin:$PATH
     ```
 
 - 测试 `VASP`，下载 [测试任务包](http://sobereva.com/attach/455/benchmark.Hg.tar.gz)，这是个含50个Hg原子的标准测试任务。将之解压，会看到 `IN-short` 和 `IN-long` ，分别是一个耗时较短和一个耗时较长任务的 `INCAR` 文件。这里将 `IN-short` 改名为 `INCAR` ，进入此目录，输入 `mpirun -np 4 vasp` 测试调用四个核心执行此任务，然后检查得到的 `OUTCAR` 看是否内容正常，没异常的话就说明完全装好了！
 
-## FFTW 安装 
-这一步可以被省略，与`intel`文件夹中编译`FFTW`重复，又与`VASP`安装中`makefile.include`文件中的一些设置有关，需要让`VASP`能找到`FFTW`，若上述没有编译`intel`的`fftw`，可采用这种方案。
+## FFTW 安装（可选）
+这一步可以被省略，与`intel`文件夹中编译`FFTW`重复，若 `intel` 编译器中的 `FFTW` 没有编译，则通过下面方法编译后，再修改与`VASP`安装中`makefile.include`文件中的一些设置有关，需要让`VASP`能找到`FFTW`。
 - [FFTW官网](http://www.fftw.org/)，下载 [最新版3.3.9](http://www.fftw.org/download.html)
 - 解压安装包，并编译安装到 `/opt` 目录
     ```bash
